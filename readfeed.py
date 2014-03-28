@@ -1,6 +1,6 @@
 #! /usr/local/bin/pythonw
 """
-updatecounts.py
+readfeed.py
 ===========
 Read from Feedburner feed to RethinkDB.
 
