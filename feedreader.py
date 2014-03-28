@@ -5,7 +5,7 @@ import time
 def GetURL(rssEntry):
   return rssEntry.feedburner_origlink
 
-def CheckForExisiting(rssEntry):
+def CheckForExisting(rssEntry):
   if r.db("heisenberg").table("articles").get(GetURL(rssEntry)).run():
     return True
   else:
