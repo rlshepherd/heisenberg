@@ -8,7 +8,7 @@ def GetURL(rssEntry):
 def CheckForExisting(rssEntry):
   if len(list(r.db("heisenberg").table("articles").filter({
     "url": GetURL(rssEntry)
-    }).run())) == 0:
+    }).run())) > 0:
     return True
   else:
     return False
