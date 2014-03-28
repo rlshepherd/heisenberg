@@ -6,7 +6,7 @@ def GetURL(rssEntry):
   return rssEntry.feedburner_origlink
 
 def GetSavedArticles():
-  pass()
+  pass
 
 def SaveArticle(rssEntry):
   r.table("heisenberg").insert({
@@ -19,5 +19,4 @@ r.connect('localhost', 28015).repl()
 savedArticles = GetSavedArticles()
 
 for rssEntry in fp.parse('http://feeds.feedburner.com/rappler/'):
-  if not GetURL(rssEntry) in savedArticles:
     SaveArticle(rssEntry)
