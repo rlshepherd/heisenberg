@@ -6,7 +6,7 @@ Read from Feedburner feed to RethinkDB.
 
 Usage:
   readfeed.py <url>
-  
+
 Options: 
   -h --help    Show this screen.
   --version    Show version.
@@ -44,14 +44,14 @@ def InsertArticle(rssEntry):
     "shares":[]
     }).run()
 
-r.connect('localhost', 28015).repl()
-
 if __name__ == '__main__':
 
   arguments = docopt(__doc__, version='Heisenberg v0.1')
   print arguments 
   feed = arguments['<url>']
   print feed
+  r.connect('localhost', 28015).repl()
+
   for rssEntry in fp.parse(feed).entries:
     if not CheckForExisting(rssEntry):
       InsertArticle(rssEntry)
