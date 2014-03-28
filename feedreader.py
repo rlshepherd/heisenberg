@@ -9,7 +9,7 @@ def GetSavedArticles():
   pass
 
 def SaveArticle(rssEntry):
-  r.table("heisenberg").insert({
+  r.db("heisenberg").table("articles").insert({
     "url": GetURL(rssEntry),
     "savedate": time.strftime("%x %X")
     }).run()
