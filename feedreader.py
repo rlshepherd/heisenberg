@@ -11,7 +11,8 @@ def GetSavedArticles():
 def SaveArticle(rssEntry):
   r.db("heisenberg").table("articles").insert({
     "url": GetURL(rssEntry),
-    "savedate": time.strftime("%x %X")
+    "savedate": time.strftime("%x %X"),
+    "shares":[]
     }).run()
 
 r.connect('localhost', 28015).repl()
