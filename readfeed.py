@@ -50,7 +50,7 @@ if __name__ == '__main__':
   arguments = docopt(__doc__, version='Heisenberg v0.1')
 
   feed = arguments['<url>']
-
+  print feed
   for rssEntry in fp.parse(feed).entries:
     if not CheckForExisting(rssEntry):
       InsertArticle(rssEntry)
