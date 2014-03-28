@@ -1,13 +1,23 @@
-import feedburner
-import rethinkdb
+import feedparser as fp
+import rethinkdb as r
+import time
 
-def GetLink(rssEntry):
+def GetURL(rssEntry):
   return rssEntry.feedburner_origlink
 
 def GetSavedArticles():
   pass()
 
-for rssEntry in feedparser.parse('http://feeds.feedburner.com/rappler/'):
-  # Check if it exists in rethinkdb:
-  if not GetLink(rssEntry) in GetSavedArticles():
-    
+def SaveArticle(rssEntry):
+  r.table("heisenberg").insert({
+    "url": GetURL(rssEntry),
+    "savedate": time.strftime("%x %X")
+    }).run()
+
+r.connect('localhost', 28015).repl()
+
+savedArticles = GetSavedArticles()
+
+for rssEntry in fp.parse('http://feeds.feedburner.com/rappler/'):
+  if not GetURL(rssEntry) in savedArticles:
+    SaveArticle(rssEntry)
