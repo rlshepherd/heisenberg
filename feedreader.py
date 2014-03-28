@@ -18,5 +18,5 @@ r.connect('localhost', 28015).repl()
 
 savedArticles = GetSavedArticles()
 
-for rssEntry in fp.parse('http://feeds.feedburner.com/rappler/'):
+for rssEntry in fp.parse('http://feeds.feedburner.com/rappler/').entries:
     SaveArticle(rssEntry)
