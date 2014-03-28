@@ -1,9 +1,13 @@
 import feedburner
+import rethinkdb
 
-def getLinks(rssEntry)
-  rssEntry.feedburner_origlink
+def GetLink(rssEntry):
+  return rssEntry.feedburner_origlink
 
-rssFeed = feedparser.parse('http://feeds.feedburner.com/rappler/')
+def GetSavedArticles():
+  pass()
 
-for rssEntry in rssFeed:
-  
+for rssEntry in feedparser.parse('http://feeds.feedburner.com/rappler/'):
+  # Check if it exists in rethinkdb:
+  if not GetLink(rssEntry) in GetSavedArticles():
+    
