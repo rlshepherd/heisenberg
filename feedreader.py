@@ -14,7 +14,7 @@ def CheckForExisting(rssEntry):
 def SaveArticle(rssEntry):
   r.db("heisenberg").table("articles").insert({
     "url": GetURL(rssEntry),
-    "savedate": Time.now.utc,
+    "savedate": r.now(),
     "shares":[]
     }).run()
 
