@@ -6,9 +6,9 @@ def GetURL(rssEntry):
   return rssEntry.feedburner_origlink
 
 def CheckForExisting(rssEntry):
-  if r.db("heisenberg").table("articles").filter({
+  if len(list(r.db("heisenberg").table("articles").filter({
     "url": GetURL(rssEntry)
-    }).run():
+    }).run())) == 0:
     return True
   else:
     return False
