@@ -7,7 +7,7 @@ Tracks social shares for articles collected from a feedburner feed.
 Usage:
   heisenberg.py <feed>
 
-Options: 
+Options:
   -h --help    Show this screen.
   --version    Show version.
 
@@ -27,7 +27,7 @@ from docopt import docopt
 import schedule
 import threading
 
-running = True 
+running = True
 
 class StopCmd(cmd.Cmd):
   """ Handle STDIN.
@@ -62,9 +62,9 @@ if __name__ == '__main__':
                       level=logging.INFO,
                       format='%(asctime)s %(message)s',
                       datefmt='%d/%m/%Y %I:%M:%S %p')
-  
+
   logging.info('Started.')
-  
+
   arguments = docopt(__doc__, version='Heisenberg v0.1')
   feed = arguments['<feed>']
 
