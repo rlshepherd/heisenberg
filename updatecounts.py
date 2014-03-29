@@ -7,7 +7,7 @@ Update social share counts for articles saved in a rethinkdb table.
 Usage:
   updatecounts.py <lowerBound> <upperBound>
 
-Options: 
+Options:
   -h --help    Show this screen.
   --version    Show version.
 
@@ -42,7 +42,7 @@ def Twitter(url):
     return data['count']
   else:
     return 0
-  
+
 def Facebook(url):
   '''Return total shares on Facebook for a url.'''
   response = urllib2.urlopen(
@@ -79,7 +79,7 @@ def UpdateShares(url, platform):
         'count':52,
         'timestamp':r.now(),
         'platform':platform
-    }) 
+    })
   }).run()
 
 def GetSelection(lowerBound, upperBound):
@@ -91,7 +91,7 @@ def GetSelection(lowerBound, upperBound):
       r.time(x.year, x.month, x.day, x.hour, x.minute, x.second, "Z"),
       r.time(y.year, y.month, y.day, y.hour, y.minute, y.second, "Z"))
   ).run()
-  
+
   return([list(selection)])
 
 def UpdateRange(lowerBound, upperBound):
@@ -105,9 +105,9 @@ def UpdateRange(lowerBound, upperBound):
 
 if __name__ == '__main__':
   arguments = docopt(__doc__, version='Heisenberg v0.1')
-  
+
   if arguments['lowerBound'] < arguments['upperBound']:
-    lowerBound = arguments['lowerBound'] 
+    lowerBound = arguments['lowerBound']
     upperBound = arguments['upperBound']
   else:
     raise exception('lowerBound must be smaller than upperBound!')
