@@ -55,36 +55,37 @@ def Facebook(url):
     else:
         return 0
 
-
-def TotalShares(url, platform):
-    '''Return total shares for a given url and platform from platform api.'''
-    if platform == "Twitter":
-        return Twitter(url)
-    elif platform == "Facebook":
-        return Facebook(url)
-
-
-def PrevShares(url, platform):
+def PrevShareCount(url, platform):
     '''Return previous shares for a given url and platform from rethinkdb.'''
     selection = r.db('heisenberg').table('articles').filter({
-                                                            "url": url,
-                                                            "platform": platform,
-                                                            })
-    return json.loads(selection)
+      'url' : url})['shares'].run()
+    shareHistory = list(selection)[0]
+    if (len(shareHistory) > 0):
+      platformHistory = [ ob['count'] for ob in shareHistory
+                          if ob['platform'] == platform ]
+      if len(platformHistory) == 0:
+        return(0)
+      else:
+        return(platformHistory[len(platformHistory) - 1])
+    else:
+      return(0)
 
 
 def NewShares(url, platform):
     '''Get shares since last count for a url and platform'''
-    return TotalShares(url, platform) - PrevShares(url, platform)
+    if platform == "Twitter":
+        return Twitter(url) - PrevShareCount(url, platform)
+    elif platform == "Facebook":
+        return Facebook(url) - PrevShareCount(url, platform)
 
 
 def UpdateShares(url, platform):
     '''Save count of new shares to rethinkdb.'''
     r.db('heisenberg').table('articles').filter({'url': url}).update({
         'shares': r.row['shares'].append({
-                                         'count': 52,
-        'timestamp': r.now(),
-            'platform': platform
+          'count': NewShares(url, platform),
+          'timestamp': r.now(),
+          'platform': platform
         })
     }).run()
 
@@ -107,10 +108,10 @@ def UpdateRange(lowerBound, upperBound):
     '''Update all articles older than lowerBound days old, and younger than
        upperBound days.
     '''
-    selection = GetSelection(lowerBound, upperBound)
-    for article in selection:
-        UpdateShares(article.url, 'Twitter')
-        UpdateShares(article.url, 'Facebook')
+    articlesToUpdate = GetSelectionURLs(lowerBound, upperBound)
+    for url in articlesToUpdate:
+        UpdateShares(url, 'Twitter')
+        UpdateShares(url, 'Facebook')
 
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='Heisenberg v0.1')
