@@ -57,7 +57,7 @@ def Facebook(url):
 
 
 def TotalShares(url, platform):
-    '''Return total shares for a given url and platform from platform api'''
+    '''Return total shares for a given url and platform from platform api.'''
     if platform == "Twitter":
         return Twitter(url)
     elif platform == "Facebook":
@@ -89,7 +89,7 @@ def UpdateShares(url, platform):
     }).run()
 
 
-def GetSelection(lowerBound, upperBound):
+def GetSelectionURLs(lowerBound, upperBound):
     now = datetime.datetime.utcnow()
     y = now - datetime.timedelta(lowerBound)
     x = now - datetime.timedelta(upperBound)
@@ -98,8 +98,9 @@ def GetSelection(lowerBound, upperBound):
             r.time(x.year, x.month, x.day, x.hour, x.minute, x.second, "Z"),
             r.time(y.year, y.month, y.day, y.hour, y.minute, y.second, "Z"))
     ).run()
-
-    return([list(selection)])
+    #TODO: get most recent shares per platform.
+    urls = [article['url'] for article in list(selection)]
+    return(urls)
 
 
 def UpdateRange(lowerBound, upperBound):
