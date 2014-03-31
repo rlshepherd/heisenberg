@@ -13,10 +13,10 @@ TODO summary of purpose and screenshot
 
 2. Install Heisenberg (Using [pip](https://pypi.python.org/pypi/pip), [virtualenv](http://www.virtualenv.org/en/latest/), and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)).
 
-    git clone https://github.com/rlshepherd/heisenberg.git
-    mkvirtualenv heisenberg
-    cd heisenberg
-    pip install -r requirments
+        git clone https://github.com/rlshepherd/heisenberg.git
+        mkvirtualenv heisenberg
+        cd heisenberg
+        pip install -r requirments.txt
 
 3. Start collecting data:
 
