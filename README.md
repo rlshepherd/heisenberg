@@ -11,12 +11,11 @@ TODO summary of purpose and screenshot
 
 1. [Install RethinkDB](http://rethinkdb.com/docs/install/)
 
-2. Install Heisenberg
+2. Install Heisenberg (Using [pip](https://pypi.python.org/pypi/pip), [virtualenv](http://www.virtualenv.org/en/latest/), and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)).
 
     git clone https://github.com/rlshepherd/heisenberg.git
-
-mkvirtualenv heisenberg
-
+    mkvirtualenv heisenberg
+    cd heisenberg
     pip install -r requirments
 
 3. Start collecting data:
