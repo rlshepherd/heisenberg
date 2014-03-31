@@ -39,7 +39,7 @@ The collection intervals change according to how old the article is. The default
 * Old articles (between 5 and 30 days old): Daily at midnight
 
 This reflects my view of a good balance between up-to-date information and managing resources. This might not be the right balance
-for you or your website: use Heisenberg to find out!
+for you or your website. I suggest running heisenberg for a bit to learn about hte "social halflife" of your content, and then tweaking the collection intervals accordingly.
 
 ### Can I change the collection intervals?
 
