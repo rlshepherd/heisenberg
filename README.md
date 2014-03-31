@@ -5,31 +5,27 @@ Heisenberg helps make monitoring your content's social media popularity easier. 
 
 Then you might find heisenberg useful.
 
-#TODO summary of purpose and screenshot
+TODO summary of purpose and screenshot
 
 # Installation and Setup
 
-1. Install RethinkDB
+1. [Install RethinkDB](http://rethinkdb.com/docs/install/)
 
 2. Install Heisenberg
 
-git clone
+    git clone https://github.com/rlshepherd/heisenberg.git
 
 mkvirtualenv heisenberg
 
-pip install -r requirments
+    pip install -r requirments
 
 3. Start collecting data:
 
-python heisenberg.py http://feeds.feedburner.com/mysite/
+    python heisenberg.py http://feeds.feedburner.com/mysite/
 
 You're collecting data now! Not familiar with RethinkDB yet? No problem, read on to install a very simple dashboard to get you started.
 
-3. Launch the webserver
-
-python app.py
-
-*You're all set!* Navigate to localhost:8000 to see your dashboard. Suggestions and pull requests are welcome!
+3. TODO: build web dashboard.
 
 # FAQ
 
@@ -44,7 +40,7 @@ The collection intervals change according to how old the article is. The default
 This reflects my view of a good balance between up-to-date information and managing resources. This might not be the right balance
 for you or your website: use Heisenberg to find out!
 
-### Can I change the collection intervals? 
+### Can I change the collection intervals?
 
 **Yes!** The easiet way to do this is by not running heisenberg.py at all and instead scheduling your updates via crontab (see the next question).
 
@@ -54,7 +50,7 @@ If you want to update the defaults in heisenberg.py, change the following lines:
     schedule.every().hour.do(Update(3,5))
     schedule.every().day.at("00:00").do(Update(6,30))
 
-You can be as fine or coarse grained as you want. I didn't add support for an open interval, but you could put a big number as the upper bound. 
+You can be as fine or coarse grained as you want. I didn't add support for an open interval, but you could put a big number as the upper bound.
 
 ### Can I use crontab instead of python to schedule tasks?
 
