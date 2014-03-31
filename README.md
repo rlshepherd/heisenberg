@@ -1,4 +1,6 @@
-Heisenberg helps make monitoring your content's social media popularity easier. Is heisenberg right for me? Do you:
+Heisenberg is a tool for tracking social shares of frequently updated websites. URLs to track are gathered from an RSS feed. Tracking frequency degrades with content age.
+
+Is heisenberg right for me? Do you:
 
 1. Want to monitor when your content is shared online?
 2. Have an RSS feed?
@@ -20,9 +22,9 @@ TODO summary of purpose and screenshot
 
 3. Start collecting data:
 
-    python heisenberg.py http://feeds.feedburner.com/mysite/
+        python heisenberg.py http://feeds.feedburner.com/mysite/
 
-You're collecting data now! Not familiar with RethinkDB yet? No problem, read on to install a very simple dashboard to get you started.
+    You're collecting data now! Not familiar with RethinkDB yet? No problem, read on to install a very simple dashboard to get you started.
 
 3. TODO: build web dashboard.
 
